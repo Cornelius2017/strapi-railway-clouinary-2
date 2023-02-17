@@ -16,7 +16,6 @@
     "@strapi/provider-upload-cloudinary": "4.5.5",
     "@strapi/strapi": "^4.6.1",
     "better-sqlite3": "^8.1.0",
-    "graphql": "^16.6.0",
     "pg": "8.8.0"
   },
   "author": {
