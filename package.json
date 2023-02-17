@@ -9,12 +9,14 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
+    "@strapi/plugin-graphql": "^4.6.1",
     "@strapi/plugin-i18n": "4.5.5",
-    "@strapi/plugin-users-permissions": "4.5.5",
+    "@strapi/plugin-users-permissions": "^4.6.1",
     "@strapi/provider-upload-cloudinary": "4.5.5",
-    "@strapi/strapi": "4.5.5",
+    "@strapi/strapi": "^4.6.1",
+    "better-sqlite3": "^8.1.0",
+    "graphql": "^16.6.0",
     "pg": "8.8.0"
   },
   "author": {
