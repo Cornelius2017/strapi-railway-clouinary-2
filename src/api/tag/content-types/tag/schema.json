@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags",
+  "info": {
+    "singularName": "tag",
+    "pluralName": "tags",
+    "displayName": "Tags",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 20
+    },
+    "beginners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::beginner.beginner",
+      "mappedBy": "tags"
+    }
+  }
+}

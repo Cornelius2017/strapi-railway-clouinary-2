@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * post router
+ * beginner router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::post.post');
+module.exports = createCoreRouter('api::beginner.beginner');

@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Categories",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "unique": true
+    },
+    "top_news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::top-newz.top-newz",
+      "mappedBy": "tags"
+    },
+    "news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::newz.newz",
+      "mappedBy": "tags"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "authors"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "tags"
+    },
+    "beginners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::beginner.beginner",
+      "mappedBy": "categories"
+    }
+  }
+}
