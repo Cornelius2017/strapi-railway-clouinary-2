@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags",
+  "info": {
+    "singularName": "tag",
+    "pluralName": "tags",
+    "displayName": "Tags",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 20
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "tags"
+    },
+    "beginners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::beginner.beginner",
+      "mappedBy": "tags"
+    },
+    "news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::newz.newz",
+      "mappedBy": "tags"
+    },
+    "top_news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::top-newz.top-newz",
+      "mappedBy": "tags"
+    },
+    "you_tubes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::you-tube.you-tube",
+      "mappedBy": "tags"
+    }
+  }
+}
