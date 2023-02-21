@@ -6,6 +6,8 @@ import React from "react";
 import { parseISO, format } from 'date-fns'
 import styles from '@/styles/Home.module.sass'
 
+import Link from "next/link"
+
 export function Date({ dateString }) {
   const date = parseISO(dateString);
   return <time dateTime={dateString}>{format(date, 'LL-d-yyyy | HH:mm')}</time>;
@@ -14,7 +16,7 @@ export function Date({ dateString }) {
 const BlogPostPreview = ({ post }) => {
   return (
     <div className={styles.card}>
-      <a href="#">
+     <Link href={`/post/${post.attributes.slug}`}>
         <Image
           className={styles.card__img}
           src={post.attributes.img.data?.attributes.url || Fallback_img}
@@ -56,7 +58,7 @@ const BlogPostPreview = ({ post }) => {
 
 
         </div>
-      </a>
+      </Link>
 
     </div>
   );
