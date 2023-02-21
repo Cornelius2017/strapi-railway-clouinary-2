@@ -4,7 +4,8 @@
   "info": {
     "singularName": "newz",
     "pluralName": "news",
-    "displayName": "News"
+    "displayName": "News",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,14 +24,12 @@
       "type": "datetime"
     },
     "img": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "content": {
       "type": "richtext"
@@ -59,7 +58,7 @@
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::category.category",
+      "target": "api::tag.tag",
       "inversedBy": "news"
     }
   }

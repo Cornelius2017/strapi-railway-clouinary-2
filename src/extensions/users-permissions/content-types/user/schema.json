@@ -68,6 +68,18 @@
       "relation": "manyToOne",
       "target": "api::beginner.beginner",
       "inversedBy": "authors"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "authors"
+    },
+    "you_tube": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::you-tube.you-tube",
+      "inversedBy": "authors"
     }
   }
 }

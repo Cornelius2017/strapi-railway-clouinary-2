@@ -26,10 +26,7 @@
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "slug": {
@@ -40,6 +37,13 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
     },
+    "position": {
+      "type": "enumeration",
+      "enum": [
+        "top-1",
+        "top-2"
+      ]
+    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
@@ -49,15 +53,8 @@
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::category.category",
+      "target": "api::tag.tag",
       "inversedBy": "top_news"
-    },
-    "position": {
-      "type": "enumeration",
-      "enum": [
-        "top-1",
-        "top-2"
-      ]
     }
   }
 }

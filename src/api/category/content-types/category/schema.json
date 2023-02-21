@@ -16,34 +16,34 @@
       "type": "string",
       "unique": true
     },
-    "top_news": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::top-newz.top-newz",
-      "mappedBy": "tags"
-    },
-    "news": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::newz.newz",
-      "mappedBy": "tags"
-    },
-    "article": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::article.article",
-      "inversedBy": "authors"
-    },
     "articles": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
-      "mappedBy": "tags"
+      "mappedBy": "categories"
     },
     "beginners": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::beginner.beginner",
+      "mappedBy": "categories"
+    },
+    "news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::newz.newz",
+      "mappedBy": "categories"
+    },
+    "top_news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::top-newz.top-newz",
+      "mappedBy": "categories"
+    },
+    "you_tubes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::you-tube.you-tube",
       "mappedBy": "categories"
     }
   }

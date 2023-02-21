@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "beginners",
+  "collectionName": "you_tubes",
   "info": {
-    "singularName": "beginner",
-    "pluralName": "beginners",
-    "displayName": "Beginners",
-    "description": ""
+    "singularName": "you-tube",
+    "pluralName": "you-tubes",
+    "displayName": "YouTube"
   },
   "options": {
     "draftAndPublish": true
@@ -18,14 +17,6 @@
     },
     "content": {
       "type": "richtext"
-    },
-    "img": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
     },
     "date": {
       "type": "datetime"
@@ -41,23 +32,38 @@
         "top"
       ]
     },
-    "authors": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "plugin::users-permissions.user",
-      "mappedBy": "beginner"
+    "img": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "video": {
+      "allowedTypes": [
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
-      "inversedBy": "beginners"
+      "inversedBy": "you_tubes"
     },
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "beginners"
+      "inversedBy": "you_tubes"
+    },
+    "authors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "you_tube"
     }
   }
 }

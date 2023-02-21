@@ -24,19 +24,21 @@
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "date": {
       "type": "datetime"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
     "authors": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::category.category",
+      "target": "plugin::users-permissions.user",
       "mappedBy": "article"
     },
     "categories": {
@@ -48,19 +50,8 @@
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::category.category",
+      "target": "api::tag.tag",
       "inversedBy": "articles"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
-    },
-    "position": {
-      "type": "enumeration",
-      "enum": [
-        "top"
-      ]
     }
   }
 }
