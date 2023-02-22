@@ -1,10 +1,9 @@
-import Head from 'next/head'
-import styles from '@/styles/Home.module.sass'
+import styles from '@/styles/Home.module.sass';
 
-import client from 'apollo-client'
-import { GET_ALL_TOP_NEWS } from '@/graphql/queries'
+import client from 'apollo-client';
+import { GET_ALL_TOP_NEWS } from '@/graphql/queries';
 
-import BlogPostPreview from 'components/BlogPostPreview'
+import BlogPostPreview from 'components/BlogPostPreview';
 
 export default function Home({ posts }) {
   return (
@@ -23,16 +22,12 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    query: GET_ALL_TOP_NEWS,
+    query: GET_ALL_TOP_NEWS
   });
 
   return {
     props: {
       posts: data.topNews.data,
-    },
+    }
   };
 }
-
-
-
-

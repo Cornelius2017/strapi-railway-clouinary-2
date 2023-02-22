@@ -1,6 +1,6 @@
-import '@/styles/globals.css'
+import '@/styles/globals.css';
 
-import styles from '@/styles/Home.module.sass'
+import styles from '@/styles/Home.module.sass';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -22,4 +22,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp
+export default MyApp;

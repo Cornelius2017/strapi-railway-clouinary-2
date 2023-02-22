@@ -1,12 +1,13 @@
-import client from 'apollo-client'
+import client from 'apollo-client';
 
-import styles from '@/styles/Home.module.sass'
-import ReactMarkdown from 'react-markdown'
-import Date from 'components/_fn/date'
+import styles from '@/styles/Home.module.sass';
+import ReactMarkdown from 'react-markdown';
+import Date from 'components/_fn/date';
 
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '@/graphql/queries'
+import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '@/graphql/queries';
 
 export default function Post({ postData }) {
   return (
@@ -27,8 +28,9 @@ export default function Post({ postData }) {
         </div>
         {
           postData.attributes.img.data ?
-
-            <img src={postData.attributes.img.data?.attributes.url} alt={postData.attributes.title} width="100%" />
+            <div style={{ width: '100%', height: '400px', position: 'relative' }}>
+              <Image src={postData.attributes.img.data?.attributes.url} alt={postData.attributes.title} layout="fill" objectFit='cover' />
+            </div>
             : null
 
         }
@@ -74,7 +76,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { data } = await client.query({
-    query: GET_SINGLE_TOP_NEWS ,
+    query: GET_SINGLE_TOP_NEWS,
     variables: { slug: params.slug }
   });
 
