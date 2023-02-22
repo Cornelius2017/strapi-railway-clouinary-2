@@ -31,26 +31,29 @@
   flex-wrap: wrap
   justify-content: flex-start
 
+.article
+  margin-bottom: 30px
+
 .card
-  box-shadow: 0 0 5px rgba(#000, 20%)
-  width: calc(33.33% - 40px)
-  margin: 20px
-
-  @media only screen and (max-width: 960px)
-    width: calc(50% - 40px)
-    max-width: 100%
-  @media only screen and (max-width: 640px)
-    width: 100%
-    max-width: 350px
-    margin-left: auto
-    margin-right: auto
-
-  a
+  &__wrap
     display: flex
     flex-direction: column
     height: 100%
     text-decoration: none
     color: inherit
+    box-shadow: 0 0 5px rgba(#000, 20%)
+    width: calc(33.33% - 40px)
+    margin: 20px
+
+    @media only screen and (max-width: 960px)
+      width: calc(50% - 40px)
+      max-width: 100%
+    @media only screen and (max-width: 640px)
+      width: 100%
+      max-width: 350px
+      margin-left: auto
+      margin-right: auto
+
   &__img
       display: block
       width: 100%
@@ -93,3 +96,8 @@
     margin-top: 10px
   &__content
     margin-bottom: 40px
+  &__btn_back
+    background: transparent
+    border: none
+    cursor: pointer
+    text-decoration: underline

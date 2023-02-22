@@ -7,14 +7,11 @@ import Date from "components/_fn/date";
 import styles from "@/styles/Home.module.sass";
 
 
-import Link from "next/link";
-
-
 const BlogPostPreview = ({ post }) => {
   return (
 
     <div className={styles.card}>
-      <Link href={`/post/${post.attributes.slug}`}>
+     
        <Image className={styles.card__img}
           src={post.attributes.img.data?.attributes.url || Fallback_img}
           alt={post.attributes.title}
@@ -38,7 +35,7 @@ const BlogPostPreview = ({ post }) => {
           </div>
 
         </div>
-      </Link>
+      
     </div>
   );
 };

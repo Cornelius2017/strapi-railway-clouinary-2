@@ -4,12 +4,14 @@ import styles from '@/styles/Home.module.sass';
 import ReactMarkdown from 'react-markdown';
 import Date from 'components/_fn/date';
 
-import Link from 'next/link';
+import { useRouter } from "next/router";
 import Image from 'next/image';
 
 import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '@/graphql/queries';
 
 export default function Post({ postData }) {
+  const router = useRouter();
+
   return (
     <div className={styles.container} key={postData.attributes.slug}>
       <div className={styles.single_page}>
@@ -37,9 +39,9 @@ export default function Post({ postData }) {
         <ReactMarkdown className={styles.single_page__content}>
           {postData.attributes.content}
         </ReactMarkdown>
-        <Link href={`/`}>
+        <button onClick={() => router.back()} className={styles.single_page__btn_back}>
           Назад
-        </Link>
+        </button>
         <div className={styles.single_page__info}>
           <span>
             {postData.attributes.tags.data.map((tag) => (

@@ -1,4 +1,5 @@
 import client from 'apollo-client';
+import { useRouter } from "next/router";
 
 import styles from '@/styles/Home.module.sass';
 import ReactMarkdown from 'react-markdown';
@@ -7,9 +8,11 @@ import Date from 'components/_fn/date';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '@/graphql/queries';
+import { GET_ALL_NEWS_SLUGS, GET_SINGLE_NEWS } from '@/graphql/queries';
 
 export default function Post({ postData }) {
+  const router = useRouter();
+
   return (
     <div className={styles.container} key={postData.attributes.slug}>
       <div className={styles.single_page}>
@@ -17,13 +20,14 @@ export default function Post({ postData }) {
         <div className={styles.single_page__meta}>
           <span>
             <Date dateString={postData.attributes.date} />
-          </span> &nbsp;|&nbsp;
-          <span>
-            {postData.attributes.authors.data.map((author) => (
-              <span key={author.attributes.username}>
+          </span> 
+          <span> 
+            {postData.attributes.authors ? 
+              postData.attributes.authors.data.map((author) => (
+              `&nbsp;|&nbsp;` + <span key={author.attributes.username}>
                 {author.attributes.username}
               </span>
-            ))}
+            )) : null}
           </span>
         </div>
         {
@@ -37,9 +41,9 @@ export default function Post({ postData }) {
         <ReactMarkdown className={styles.single_page__content}>
           {postData.attributes.content}
         </ReactMarkdown>
-        <Link href={`/`}>
+        <button onClick={() => router.back()} className={styles.single_page__btn_back}>
           Назад
-        </Link>
+        </button>
         <div className={styles.single_page__info}>
           <span>
             {postData.attributes.tags.data.map((tag) => (
@@ -63,10 +67,10 @@ export default function Post({ postData }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: GET_ALL_TOP_NEWS_SLUGS,
+    query: GET_ALL_NEWS_SLUGS,
   });
   return {
-    paths: data.topNews.data.map((item) => ({
+    paths: data.news.data.map((item) => ({
       params: { slug: item.attributes.slug },
     })),
     fallback: false,
@@ -76,13 +80,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { data } = await client.query({
-    query: GET_SINGLE_TOP_NEWS,
+    query: GET_SINGLE_NEWS,
     variables: { slug: params.slug }
   });
 
   return {
     props: {
-      postData: data.topNews.data[0],
+      postData: data.news.data[0],
     },
   };
 }
