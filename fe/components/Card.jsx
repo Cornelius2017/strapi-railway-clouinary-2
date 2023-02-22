@@ -30,7 +30,7 @@ const BlogPostPreview = ({ post }) => {
             <div className=""><Date dateString={post.attributes.date}/></div>
             <div className="">
               {post.attributes.authors.data.map((author) => (
-                <span key={author.attributes.id} data-key={author.attributes.id}>
+                <span key={author.attributes.username} data-key={author.attributes.username}>
                   {author.attributes.username}
                 </span>
               ))}

@@ -16,7 +16,7 @@
   flex-direction: column
 
 .container 
-  max-width: 960px
+  max-width: 1200px
   margin-left: auto
   margin-right: auto
   text-align: center
@@ -29,12 +29,22 @@
 .row
   display: flex
   flex-wrap: wrap
-  justify-content: center
+  justify-content: flex-start
 
 .card
   box-shadow: 0 0 5px rgba(#000, 20%)
-  max-width: 350px
+  width: calc(33.33% - 40px)
   margin: 20px
+
+  @media only screen and (max-width: 960px)
+    width: calc(50% - 40px)
+    max-width: 100%
+  @media only screen and (max-width: 640px)
+    width: 100%
+    max-width: 350px
+    margin-left: auto
+    margin-right: auto
+
   a
     display: flex
     flex-direction: column
@@ -66,6 +76,8 @@
 
 .single_page
   text-align: left 
+  padding-left: 30px
+  padding-right: 30px
   p
     margin-top: 18px
     margin-bottom: 18px

@@ -28,12 +28,6 @@
       "target": "api::beginner.beginner",
       "mappedBy": "categories"
     },
-    "news": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::newz.newz",
-      "mappedBy": "categories"
-    },
     "top_news": {
       "type": "relation",
       "relation": "manyToMany",
@@ -44,6 +38,12 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::you-tube.you-tube",
+      "mappedBy": "categories"
+    },
+    "news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::newz.newz",
       "mappedBy": "categories"
     }
   }

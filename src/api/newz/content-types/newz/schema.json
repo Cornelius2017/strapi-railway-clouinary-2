@@ -47,7 +47,7 @@
     "authors": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::category.category",
+      "target": "plugin::users-permissions.user",
       "mappedBy": "news"
     },
     "categories": {

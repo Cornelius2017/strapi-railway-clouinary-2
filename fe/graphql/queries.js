@@ -63,6 +63,55 @@ query {
 }
 `;
 
+const GET_ALL_NEWS = gql`
+query {
+  news(
+    sort: "publishedAt:desc"
+    pagination: { limit: 5 }
+    filters: { publishedAt: { notNull: true } }
+  ) {
+    data {
+      attributes {
+        title
+        slug
+        date
+        position
+        authors {
+          data {
+            attributes {
+              username
+            }
+          }
+        }
+        tags {
+          data {
+            attributes {
+              title
+            
+              
+            }
+          }
+        }
+        categories {
+          data {
+            attributes {
+              title
+            }
+          }
+        }
+        img {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 const GET_SINGLE_TOP_NEWS = gql`
 query ($slug: String!) {
   topNews(

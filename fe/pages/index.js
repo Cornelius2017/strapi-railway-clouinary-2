@@ -3,19 +3,21 @@ import styles from '@/styles/Home.module.sass';
 import client from 'apollo-client';
 import { GET_ALL_TOP_NEWS } from '@/graphql/queries';
 
-import BlogPostPreview from 'components/BlogPostPreview';
+import Card from '@/components/Card';
 
-export default function Home({ posts }) {
+export default function Home({ top_news }) {
   return (
     <div className={styles.container}>
+      <article className={styles.section}>
       <h1 className="">
         TOP News
       </h1>
       <section className={styles.row}>
-        {posts.map((post) => (
-          <BlogPostPreview post={post} key={post.attributes.slug} />
+        {top_news.map((post, i) => (
+          <Card post={post} key={`${i}-${post.attributes.slug}`} />
         ))}
       </section>
+      </article>
     </div>
   );
 }
@@ -27,7 +29,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: data.topNews.data,
+      top_news: data.topNews.data,
     }
   };
 }
