@@ -4,7 +4,7 @@
   "info": {
     "singularName": "top-newz",
     "pluralName": "top-news",
-    "displayName": "Top-News",
+    "displayName": "[1] Top-News",
     "description": ""
   },
   "options": {
@@ -30,7 +30,9 @@
       ]
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     },
     "authors": {
       "type": "relation",

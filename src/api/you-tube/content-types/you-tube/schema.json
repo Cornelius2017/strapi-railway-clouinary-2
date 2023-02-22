@@ -4,7 +4,8 @@
   "info": {
     "singularName": "you-tube",
     "pluralName": "you-tubes",
-    "displayName": "YouTube"
+    "displayName": "[3] YouTube",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -33,19 +34,21 @@
       ]
     },
     "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "categories": {
       "type": "relation",
