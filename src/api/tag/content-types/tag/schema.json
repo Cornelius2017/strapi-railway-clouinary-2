@@ -46,6 +46,11 @@
       "relation": "manyToMany",
       "target": "api::you-tube.you-tube",
       "mappedBy": "tags"
+    },
+    "tagId": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

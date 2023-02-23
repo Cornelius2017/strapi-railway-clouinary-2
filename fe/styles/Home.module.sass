@@ -34,6 +34,32 @@
 .article
   margin-bottom: 30px
 
+.badge
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  background-color: #e5e5e5
+  color: #7c7c7c
+  border-radius: 20pc
+  padding: 8px 16px
+  margin: 5px
+  cursor: pointer
+  user-select: none
+  font-size: 12px
+  &:first-child
+    margin-left: 0
+  &:last-child
+    margin-right: 0
+  &__wrap
+    margin-left: 20px
+    margin-right: 20px
+    margin-top: 20px
+    padding-top: 10px
+    border-top: 1px solid #dadada
+    text-align: left
+  
+
+
 .card
   &__wrap
     display: flex
@@ -67,7 +93,8 @@
     text-align: left
   &__title
     font-weight: bold
-    margin-bottom: 10px
+    text-transform: uppercase
+    
     
   &__meta
     display: flex
@@ -92,8 +119,13 @@
     margin-bottom: 15px
     font-size: 13px
   &__info
-    border-bottom: 1px solid rgba(#000, 0.2)
-    margin-top: 10px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    border-top: 1px solid rgba(#000, 0.2)
+    margin-top: 15px
+    margin-bottom: 15px
+    padding: 5px 0
   &__content
     margin-bottom: 40px
   &__btn_back

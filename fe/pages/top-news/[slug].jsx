@@ -1,16 +1,16 @@
-import client from 'apollo-client';
+import client from "apollo-client";
 
-import styles from '@/styles/Home.module.sass';
-import ReactMarkdown from 'react-markdown';
-import Date from 'components/_fn/date';
+import styles from "@/styles/Home.module.sass";
+import ReactMarkdown from "react-markdown";
 
-import { useRouter } from "next/router";
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
 
-import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '@/graphql/queries';
+import GoBack from "@/components/_fn/go-back";
+import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from "@/graphql/queries";
 
 export default function Post({ postData }) {
-  const router = useRouter();
+  
 
   return (
     <div className={styles.container} key={postData.attributes.slug}>
@@ -18,8 +18,9 @@ export default function Post({ postData }) {
         <h1>{postData.attributes.title}</h1>
         <div className={styles.single_page__meta}>
           <span>
-            <Date dateString={postData.attributes.date} />
-          </span> &nbsp;|&nbsp;
+            {new Date(postData.attributes.date).toLocaleString([], {dateStyle: 'short', timeStyle: 'short'})} 
+          </span>
+          &nbsp;|&nbsp;
           <span>
             {postData.attributes.authors.data.map((author) => (
               <span key={author.attributes.username}>
@@ -28,32 +29,39 @@ export default function Post({ postData }) {
             ))}
           </span>
         </div>
-        {
-          postData.attributes.img.data ?
-            <div style={{ width: '100%', height: '400px', position: 'relative' }}>
-              <Image src={postData.attributes.img.data?.attributes.url} alt={postData.attributes.title} layout="fill" objectFit='cover' />
-            </div>
-            : null
-
-        }
+        {postData.attributes.img.data ? (
+          <div style={{ width: "100%", height: "400px", position: "relative" }}>
+            <Image
+              src={postData.attributes.img.data?.attributes.url}
+              alt={postData.attributes.title}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        ) : null}
         <ReactMarkdown className={styles.single_page__content}>
           {postData.attributes.content}
         </ReactMarkdown>
-        <button onClick={() => router.back()} className={styles.single_page__btn_back}>
-          Назад
-        </button>
+
+        <GoBack></GoBack>
+
         <div className={styles.single_page__info}>
+          {postData.attributes.tags.data.length ? (
+            <span>
+              <b data-key={postData.attributes.tags.data}>Теги: </b>
+              {postData.attributes.tags.data.map((tag) => (
+                <Link href={`/tag/${tag.attributes.tagId}`} key={tag.attributes.tagId} className={styles.badge}>
+                  {tag.attributes.title}
+                </Link>
+              ))}
+            </span>
+          ) : null}
+
           <span>
-            {postData.attributes.tags.data.map((tag) => (
-              <span key={tag.attributes.id}>
-                {tag.attributes.username}
-              </span>
-            ))}
-          </span>
-          <span>
+            <b>Категории: </b>
             {postData.attributes.categories.data.map((cat) => (
-              <span key={cat.attributes.id}>
-                {cat.attributes.username}
+              <span key={cat.attributes.title} className={styles.badge}>
+                {cat.attributes.title}
               </span>
             ))}
           </span>
@@ -75,11 +83,10 @@ export async function getStaticPaths() {
   };
 }
 
-
 export async function getStaticProps({ params }) {
   const { data } = await client.query({
     query: GET_SINGLE_TOP_NEWS,
-    variables: { slug: params.slug }
+    variables: { slug: params.slug },
   });
 
   return {
