@@ -7,6 +7,7 @@ import Card from "@/components/Card";
 import styles from "@/styles/Home.module.sass";
 
 export default function Tag({ tagData, tags }) {
+ 
   return (
     <>
       <section className={styles.container}>
@@ -99,7 +100,7 @@ export async function getStaticProps({ params }) {
   const b = await client.query({
     query: GET_ALL_TAGS_SLUG,
   });
-
+  
   return {
     props: {
       tagData: a.data.tags.data[0],

@@ -9,6 +9,7 @@ import Card from '@/components/Card';
 
 export default function Home({ top_news, news }) {
   return (
+    <div className={styles.inner}>
     <div className={styles.container}>
       <article className={styles.article}>
       <h1 className="">
@@ -35,6 +36,7 @@ export default function Home({ top_news, news }) {
         ))}
       </section>
       </article>
+    </div>
     </div>
   );
 }

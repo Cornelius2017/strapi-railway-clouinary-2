@@ -1,15 +1,11 @@
 import '@/styles/globals.css';
-
+import Header from 'components/Header';
 import styles from '@/styles/Home.module.sass';
 
 function MyApp({ Component, pageProps }) {
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.container}>
-        Header 
-        </div>
-      </header>
+      <Header/>
       <main className={styles.main}>
       <Component {...pageProps} />
       </main>

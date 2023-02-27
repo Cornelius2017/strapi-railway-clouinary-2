@@ -21,6 +21,7 @@ const GET_ALL_TAGS = gql`
         attributes {
           title
           tagId
+          
           top_news {
             data {
               attributes {

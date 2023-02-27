@@ -6,8 +6,14 @@ import { GET_ALL_NEWS  } from '@/graphql/queries';
 import Card from '@/components/Card';
 import Link from 'next/link';
 
+import Breadcrumbs from '@/components/Breadcrumbs';
+
 const News = ({ news }) => {
     return (
+        <>
+        <Breadcrumbs title='Новости' />
+        
+        <div className={styles.inner}>
         <div className={styles.container}>
             <article className={styles.section}>
                 <h1 className="">
@@ -22,6 +28,9 @@ const News = ({ news }) => {
                 </section>
             </article>
         </div>
+        </div>
+        </>
+       
     );
 }
 
