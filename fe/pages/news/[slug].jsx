@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import styles from '@/styles/Home.module.sass';
 import ReactMarkdown from 'react-markdown';
-import Date from 'components/_fn/date';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,7 +18,7 @@ export default function Post({ postData }) {
         <h1>{postData.attributes.title}</h1>
         <div className={styles.single_page__meta}>
           <span>
-            <Date dateString={postData.attributes.date} />
+          {new Date(postData.attributes.date).toLocaleString([], {dateStyle: 'short', timeStyle: 'short'})} 
           </span> 
           <span> 
             {postData.attributes.authors ? 
