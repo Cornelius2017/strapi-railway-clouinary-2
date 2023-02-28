@@ -3,7 +3,7 @@ import Fallback_img from "assets/img/news.jpg";
 
 import React from "react";
 
-import styles from "@/styles/Home.module.sass";
+import styles from "../styles/Home.module.sass";
 
 import truncateStr from "./_fn/truncate";
 

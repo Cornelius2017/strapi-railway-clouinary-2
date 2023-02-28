@@ -1,12 +1,12 @@
 import client from 'apollo-client';
 
-import styles from '@/styles/Home.module.sass';
+import styles from '../../styles/Home.module.sass';
 import ReactMarkdown from 'react-markdown';
 
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '@/graphql/queries';
+import { GET_ALL_TOP_NEWS_SLUGS, GET_SINGLE_TOP_NEWS } from '../../graphql/queries';
 
 export default function Post({ postData }) {
   return (

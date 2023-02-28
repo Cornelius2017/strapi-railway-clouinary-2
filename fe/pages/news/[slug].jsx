@@ -1,15 +1,15 @@
 import client from 'apollo-client';
 import { useRouter } from "next/router";
 
-import styles from '@/styles/Home.module.sass';
+import styles from '../../styles/Home.module.sass';
 import ReactMarkdown from 'react-markdown';
 
 import Link from 'next/link';
 import Image from 'next/image';
 
-import Breadcrumbs from '@/components/Breadcrumbs';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
-import { GET_ALL_NEWS_SLUGS, GET_SINGLE_NEWS } from '@/graphql/queries';
+import { GET_ALL_NEWS_SLUGS, GET_SINGLE_NEWS } from '../../graphql/queries';
 
 export default function Post({ postData }) {
   const router = useRouter();

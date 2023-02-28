@@ -108,13 +108,19 @@
 
 .card_skeleton
   width: 33.33%
+  padding: 10px
   display: inline-flex
   justify-content: center
-  padding: 20px 10px
-  text-align: center
-  background: #f9f9f9
-  border: 1px solid #f0f0f0
-  color: #bfbfbf
+  &__wrap
+    margin-left: -10px
+    margin-right: -10px
+  &__inner
+    width: 100%
+    padding: 20px 10px
+    text-align: center
+    background: #f9f9f9
+    border: 1px solid #f0f0f0
+    color: #bfbfbf
   svg
     width: 50px  
     margin-bottom: 10px

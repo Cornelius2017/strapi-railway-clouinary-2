@@ -1,0 +1,18 @@
+# *
+User-agent: *
+Allow: /
+
+# test-bot
+User-agent: test-bot
+Allow: /
+
+# black-listed-bot
+User-agent: black-listed-bot
+Disallow: /tag
+Disallow: /search
+
+# Host
+Host: https://strapi-next-itg-news.netlify.app/
+
+# Sitemaps
+Sitemap: https://strapi-next-itg-news.netlify.app/sitemap.xml

@@ -1,10 +1,10 @@
 import client from "apollo-client";
-import { GET_ALL_TAGS, GET_ALL_TAGS_SLUG } from "@/graphql/queries";
+import { GET_ALL_TAGS, GET_ALL_TAGS_SLUG } from "../../graphql/queries";
 
 import Link from "next/link";
-import Card from "@/components/Card";
+import Card from "../../components/Card";
 
-import styles from "@/styles/Home.module.sass";
+import styles from "../../styles/Home.module.sass";
 
 export default function Tag({ tagData, tags }) {
  
