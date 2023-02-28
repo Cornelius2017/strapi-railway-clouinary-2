@@ -1,6 +1,6 @@
-import '@/styles/globals.css';
+import '../styles/globals.css';
 import Header from 'components/Header';
-import styles from '@/styles/Home.module.sass';
+import styles from '../styles/Home.module.sass';
 
 function MyApp({ Component, pageProps }) {
   return (

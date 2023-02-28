@@ -1,4 +1,4 @@
-import styles from '@/styles/Home.module.sass';
+import styles from '../styles/Home.module.sass';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';

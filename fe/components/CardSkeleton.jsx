@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/styles/Home.module.sass';
+import styles from '../styles/Home.module.sass';
 
 const CardSkeleton = () => {
   return (
@@ -7,7 +7,7 @@ const CardSkeleton = () => {
       role="status"
       className={styles.card_skeleton}
     >
-      <div className="">
+      <div className={styles.card_skeleton__inner}>
         <div className="">
           <svg
             className=""

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import styles from "@/styles/Home.module.sass";
+import styles from "../../styles/Home.module.sass";
 
 
 export default function GoBack(){
