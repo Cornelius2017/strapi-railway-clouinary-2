@@ -43,11 +43,31 @@ module.exports = {
       //   }
       // }
 
+
+      function checkPriority(){
+        let uri = path;
+        //let reg = new RegExp(/^https?:\/\/[^\/]*?((?:\/[^\/]*?){2})/ig);
+        let reg = new RegExp(/[^/]*?((?:\/[^/]*?){2})/ig);
+        let find_uri = path.replace(reg, '');
+        let priority, changefreq;
+
+        if(uri === find_uri) { 
+          priority = 0.9;
+          changefreq = config.changefreq 
+        } 
+        else { 
+          priority = config.priority;
+          changefreq = 'weekly' 
+        }
+
+        return { changefreq, priority };
+      }
+      let {priority, changefreq} = checkPriority();
       // Use default transformation for all other cases
       return {
         loc: path, // => this will be exported as http(s)://<config.siteUrl>/<path>
-        changefreq: config.changefreq,
-        priority: config.priority,
+        changefreq: changefreq,
+        priority: priority,
         lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
         alternateRefs: config.alternateRefs ?? [],
       }
