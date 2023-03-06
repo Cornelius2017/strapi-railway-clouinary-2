@@ -42,6 +42,7 @@ export default function Home({ top_news, news }) {
 }
 
 export async function getStaticProps() {
+  
   const a = await client.query({
     query: GET_ALL_TOP_NEWS
   });
