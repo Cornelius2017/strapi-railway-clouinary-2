@@ -12,24 +12,27 @@ const postsRssXml = (posts) => {
     const siteUrl = process.env.SITE_URL;
 
     posts.forEach(post => {
-        const postDate = Date.parse(post.createdAt);
-        if (!latestPostDate || postDate > Date.parse(latestPostDate)) {
-            latestPostDate = post.createdAt;
-        }
-        rssItemsXml += `
-        <item>
-        <title>${post.attributes.title}</title>
-        <link>
-        ${siteUrl}${post.attributes.slug}
-        </link>
-        <pubDate>${post.attributes.createdAt}</pubDate>
-        <image>
-        <url>${post.attributes.img.data.attributes.url}</url>
-        </image>
-        <description>
-        <![CDATA[${truncateStr(post.attributes.content, 100)}]]>
-        </description>
-      </item>`;
+        post.forEach(item => {
+            const postDate = Date.parse(item.attributes.createdAt);
+            if (!latestPostDate || postDate > Date.parse(latestPostDate)) {
+                latestPostDate = item.attributes.createdAt;
+            }
+            rssItemsXml += `
+            <item>
+            <title>${item.attributes.title}</title>
+            <link>
+            ${siteUrl}${item.attributes.slug}
+            </link>
+            <pubDate>${item.attributes.createdAt}</pubDate>
+            <image>
+            <url>${item.attributes.img.data?.attributes.url}</url>
+            </image>
+            <description>
+            <![CDATA[${truncateStr(item.attributes.content, 100)}]]>
+            </description>
+          </item>`;
+        });
+       
     });
     return {
         rssItemsXml,
@@ -38,18 +41,22 @@ const postsRssXml = (posts) => {
 };
 
 const getRssXml = (posts) => {
-    const { rssItemsXml, latestPostDate } = postsRssXml(posts);
+  
+   const { rssItemsXml, latestPostDate } = postsRssXml(posts);
+   
+    
     return `<?xml version="1.0" ?>
     <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
           <title> ITG </title>
           <link>/</link>
-          <description> </description>
+          <description> ITG News </description>
           <language>ru</language>
           <lastBuildDate>${latestPostDate}</lastBuildDate>
           ${rssItemsXml}
       </channel>
     </rss>`;
+    
 };
 
 export default class Rss extends React.Component {
@@ -71,11 +78,13 @@ export default class Rss extends React.Component {
         }
 
 
+        const fields = [news.data, top_news.data, articles.data, beginners.data];
+
         res.setHeader("Content-Type", "text/xml");
-        res.write(getRssXml(news.data));
+        res.write(getRssXml(fields));
         res.end();
 
-        return { news, top_news, articles, beginners }
+        return { fields }
 
     }
 
