@@ -132,10 +132,10 @@ const GET_ALL_NEWS_SLUGS = gql`
 `;
 
 const GET_ALL_TOP_NEWS = gql`
-  query {
+  query($limit: Int) {
     topNews(
       sort: "publishedAt:desc"
-      pagination: { limit: 5 }
+      pagination: { limit: $limit }
       filters: { publishedAt: { notNull: true } }
     ) {
       data {

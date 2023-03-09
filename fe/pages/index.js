@@ -7,7 +7,9 @@ import Link from  'next/link';
 
 import Card from '../components/Card';
 
+
 export default function Home({ top_news, news }) {
+
   return (
     <div className={styles.inner}>
     <div className={styles.container}>
@@ -44,7 +46,8 @@ export default function Home({ top_news, news }) {
 export async function getStaticProps() {
   
   const a = await client.query({
-    query: GET_ALL_TOP_NEWS
+    query: GET_ALL_TOP_NEWS,
+    variables: { "limit": 6 }
   });
 
   const b = await client.query({
