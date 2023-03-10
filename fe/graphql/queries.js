@@ -108,8 +108,8 @@ const GET_ALL_TAGS = gql`
 `;
 
 const GET_ALL_TOP_NEWS_SLUGS = gql`
-  query {
-    topNews(filters: { publishedAt: { notNull: true } }) {
+  query($locale: I18NLocaleCode) {
+    topNews(locale: $locale, filters: { publishedAt: { notNull: true } }) {
       data {
         attributes {
           slug
@@ -132,14 +132,16 @@ const GET_ALL_NEWS_SLUGS = gql`
 `;
 
 const GET_ALL_TOP_NEWS = gql`
-  query($limit: Int) {
+  query($limit: Int, $locale: I18NLocaleCode) {
     topNews(
+      locale: $locale
       sort: "publishedAt:desc"
       pagination: { limit: $limit }
       filters: { publishedAt: { notNull: true } }
     ) {
       data {
         attributes {
+          locale
           title
           slug
           date
@@ -198,14 +200,16 @@ const GET_ALL_NEWS = gql`
 `;
 
 const GET_SINGLE_TOP_NEWS = gql`
-  query ($slug: String!) {
+  query ($slug: String!, $locale: I18NLocaleCode) {
     topNews(
+      locale: $locale
       sort: "publishedAt:desc"
       pagination: { limit: 1 }
       filters: { slug: { eq: $slug } }
     ) {
       data {
         attributes {
+          locale
           title
           slug
           date
@@ -246,8 +250,9 @@ const GET_SINGLE_TOP_NEWS = gql`
 `;
 
 const GET_SINGLE_NEWS = gql`
-  query ($slug: String!) {
+  query ($slug: String!, $locale: I18NLocaleCode) {
     news(
+      locale: $locale
       sort: "publishedAt:desc"
       pagination: { limit: 1 }
       filters: { slug: { eq: $slug } }

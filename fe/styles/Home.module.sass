@@ -32,6 +32,7 @@
   display: flex
   flex-wrap: wrap
   justify-content: flex-start
+  align-items: flex-start
 
 .article
   margin-bottom: 30px
@@ -161,8 +162,10 @@
   display: flex
   align-items: stretch  
   justify-content: center
-  width: 100%
-  margin-top: 10px
+  width: auto
+  &_wrap
+    flex: 1 0 auto
+    margin-right: 15px
   input
     width: calc(100% - 40px)
     padding: 5px 15px
@@ -175,9 +178,6 @@
   &__res
     margin-top: 20px
     
-
-
-
 .breadcrumbs
       list-style-type: none
       padding: 5px
@@ -222,6 +222,28 @@
     font-size: 12px
     line-height: 1
     transition: all 0.3s ease-in-out
+    &:hover, &:active, &:focus
+      background-color: #000
+      border-color: #000
+      color: #fff
+
+.lang
+  max-width: 300px
+  display: flex
+  align-items: center
+  justify-content: center
+  li
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 35px
+    height: 35px
+    list-style-type: none
+    padding: 5px
+    border: 1px solid #000
+    user-select: none
+    cursor: pointer
+    text-transform: uppercase
     &:hover, &:active, &:focus
       background-color: #000
       border-color: #000

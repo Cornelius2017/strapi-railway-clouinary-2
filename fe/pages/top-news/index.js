@@ -13,21 +13,23 @@ import Link from 'next/link';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 import Pagination from '@/components/Pagination';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
-const paginate = (items, pageNumber, pageSize, paginationLimit) => {
+const paginate = (items, pageNumber, pageSize) => {
     const startIndex = (pageNumber - 1) * pageSize;
     return items.slice(startIndex, startIndex + pageSize);
 };
 
 
-const TopNews = ({ top_news }) => {
+const TopNews = ({ top_news, lang, language }) => {
     const router = useRouter();
-    const rp = +(router.query.page) || 1;
-    
+    const { locale } = useRouter();
+
+    const pg = +(router.query.page) || 1;
+
     const [page, setPage] = useState(1);
 
-    const pageSize = 2;
+    const pageSize = 100;
     const allPageItems = top_news.length;
     const paginationLimit = 2;
     const pageCount = Math.ceil(allPageItems / pageSize)
@@ -35,15 +37,15 @@ const TopNews = ({ top_news }) => {
     const handlePageChange = (count) => {
         setPage(count);
 
-        Router.push({
+        router.push({
             pathname: '',
             query: { page: count }
         });
 
     }
 
-
-    const paginatedPosts = paginate(top_news, rp > pageCount ? page : rp , pageSize);
+    const paginatedPosts = paginate(top_news, pg > pageCount ? page : pg, pageSize);
+    
     return (
         <>
             <Breadcrumbs />
@@ -52,16 +54,19 @@ const TopNews = ({ top_news }) => {
 
                     <article className={styles.section}>
                         <h1 className="">
-                            TOP News
+                          TOP News | {locale}
                         </h1>
                         <section className={styles.row}>
                             {paginatedPosts.map((post) => (
-                                <Link href={`/top-news/${post.attributes.slug}`} className={styles.card__wrap}>
-                                    <Card post={post} key={post.attributes.slug} />
-                                </Link>
+                               
+                                        <Link href={`/top-news/${post.attributes.slug}`} 
+                                        className={styles.card__wrap}>
+                                            <Card post={post} key={post.attributes.slug} />
+                                        </Link>
+                                  
                             ))}
                         </section>
-                        <Pagination current={rp > pageCount ? page : rp } pageSize={pageSize} pages={top_news.length} pgLimit={paginationLimit} onChange={handlePageChange} />
+                        <Pagination current={pg > pageCount ? page : pg} pageSize={pageSize} pages={top_news.length} pgLimit={paginationLimit} onChange={handlePageChange} />
                     </article>
 
                 </div>
@@ -72,10 +77,12 @@ const TopNews = ({ top_news }) => {
 
 export default TopNews
 
-export async function getStaticProps() {
+
+export async function getStaticProps({locale}) {
 
     const { data } = await client.query({
         query: GET_ALL_TOP_NEWS,
+        variables: { locale: locale }
     });
 
     return {

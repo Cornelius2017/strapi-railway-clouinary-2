@@ -4,7 +4,14 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['localhost', 'res.cloudinary.com']
-  }
+  },
+  i18n: {
+    locales: ["ru", "en"],
+    defaultLocale: "ru",
+    localeDetection: false
+  },
+  trailingSlash: true,
+
   
 }
 
