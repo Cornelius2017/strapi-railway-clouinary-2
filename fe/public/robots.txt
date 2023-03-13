@@ -16,3 +16,4 @@ Host: https://strapi-next-itg-news.netlify.app/
 
 # Sitemaps
 Sitemap: https://strapi-next-itg-news.netlify.app/sitemap.xml
+Sitemap: https://strapi-next-itg-news.netlify.app/serversite.xml

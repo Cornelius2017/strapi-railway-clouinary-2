@@ -6,14 +6,17 @@ import { GET_ALL_TOP_NEWS, GET_ALL_NEWS } from '../graphql/queries';
 import Link from  'next/link';
 
 import Card from '../components/Card';
+import { useRouter } from 'next/router';
 
 export default function Home({ top_news, news }) {
+  const { locale } = useRouter();
   return (
     <div className={styles.inner}>
     <div className={styles.container}>
       <article className={styles.article}>
       <h1 className="">
-        TOP News
+      <Link href={`/top-news/`} locale={locale}> TOP News 
+      </Link> | {locale}
       </h1>
       <section className={styles.row}>
         {top_news.map((post) => (
@@ -41,9 +44,11 @@ export default function Home({ top_news, news }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
+  
   const a = await client.query({
-    query: GET_ALL_TOP_NEWS
+    query: GET_ALL_TOP_NEWS,
+    variables: { "limit": 10, locale: locale }
   });
 
   const b = await client.query({

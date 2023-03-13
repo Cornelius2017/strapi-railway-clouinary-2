@@ -13,88 +13,99 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 
 
 export default function Post({ postData }) {
-
+  console.log(postData)
   return (
-    <>
-      <Breadcrumbs title={postData.attributes.title} />
 
-      <div className={styles.inner}>
-        <div className={styles.container} key={postData.attributes.slug}>
-          <div className={styles.single_page}>
-            <h1>{postData.attributes.title}</h1>
-            <div className={styles.single_page__meta}>
-              <span>
-                {new Date(postData.attributes.date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}
-              </span>
-              &nbsp;|&nbsp;
-              <span>
-                {postData.attributes.authors.data.map((author) => (
-                  <span key={author.attributes.username}>
-                    {author.attributes.username}
-                  </span>
-                ))}
-              </span>
-            </div>
-            {postData.attributes.img.data ? (
-              <div style={{ width: "100%", height: "400px", position: "relative" }}>
-                <Image
-                  src={postData.attributes.img.data?.attributes.url}
-                  alt={postData.attributes.title}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
-            ) : null}
-            <ReactMarkdown className={styles.single_page__content}>
-              {postData.attributes.content}
-            </ReactMarkdown>
 
-            <GoBack></GoBack>
+    postData && (
+      <>
+        <Breadcrumbs title={postData.attributes.title} />
 
-            <div className={styles.single_page__info}>
-              {postData.attributes.tags.data.length ? (
+        <div className={styles.inner}>
+          <div className={styles.container} key={postData.attributes.slug}>
+            <div className={styles.single_page}>
+              <h1>{postData.attributes.title} | {postData.attributes.locale}  </h1>
+              <div className={styles.single_page__meta}>
                 <span>
-                  <b data-key={postData.attributes.tags.data}>Теги: </b>
-                  {postData.attributes.tags.data.map((tag) => (
-                    <Link href={`/tag/${tag.attributes.tagId}`} key={tag.attributes.tagId} className={styles.badge}>
-                      {tag.attributes.title}
-                    </Link>
+                  {new Date(postData.attributes.date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}
+                </span>
+                &nbsp;|&nbsp;
+                <span>
+                  {postData.attributes.authors.data.map((author) => (
+                    <span key={author.attributes.username}>
+                      {author.attributes.username}
+                    </span>
                   ))}
                 </span>
+              </div>
+              {postData.attributes.img.data ? (
+                <div style={{ width: "100%", height: "400px", position: "relative" }}>
+                  <Image
+                    src={postData.attributes.img.data?.attributes.url}
+                    alt={postData.attributes.title}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
               ) : null}
+              <ReactMarkdown className={styles.single_page__content}>
+                {postData.attributes.content}
+              </ReactMarkdown>
 
-              <span>
-                <b>Категории: </b>
-                {postData.attributes.categories.data.map((cat) => (
-                  <span key={cat.attributes.title} className={styles.badge}>
-                    {cat.attributes.title}
+              <GoBack></GoBack>
+
+              <div className={styles.single_page__info}>
+                {postData.attributes.tags.data.length ? (
+                  <span>
+                    <b data-key={postData.attributes.tags.data}>Теги: </b>
+                    {postData.attributes.tags.data.map((tag) => (
+                      <Link href={`/tag/${tag.attributes.tagId}`} key={tag.attributes.tagId} className={styles.badge}>
+                        {tag.attributes.title}
+                      </Link>
+                    ))}
                   </span>
-                ))}
-              </span>
+                ) : null}
+
+                <span>
+                  <b>Категории: </b>
+                  {postData.attributes.categories.data.map((cat) => (
+                    <span key={cat.attributes.title} className={styles.badge}>
+                      {cat.attributes.title}
+                    </span>
+                  ))}
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    )
+
+
+
+
+
+
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({locale}) {
   const { data } = await client.query({
     query: GET_ALL_TOP_NEWS_SLUGS,
+    variables: { locale: locale }
   });
   return {
     paths: data.topNews.data.map((item) => ({
-      params: { slug: item.attributes.slug },
+      params: { slug: item.attributes.slug }, 
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const { data } = await client.query({
     query: GET_SINGLE_TOP_NEWS,
-    variables: { slug: params.slug },
+    variables: { slug: params.slug, locale: locale },
   });
 
   return {

@@ -2,6 +2,7 @@
 module.exports = {
     siteUrl: process.env.SITE_URL || 'http://localhost:3000/',
     generateRobotsTxt: true, // (optional)
+    // generateIndexSitemap: false,
     changefreq: 'daily',
     priority: 0.7,
     sitemapSize: 5000,
@@ -41,6 +42,7 @@ module.exports = {
       //     changefreq: config.changefreq,
       //   }
       // }
+
 
       function checkPriority(){
         let uri = path;
