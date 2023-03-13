@@ -51,11 +51,11 @@ module.exports = {
 
         if(uri === find_uri) { 
           priority = 0.9;
-          changefreq = config.changefreq 
+          changefreq = config.changefreq; 
         } 
         else { 
           priority = config.priority;
-          changefreq = 'weekly' 
+          changefreq = 'weekly';
         }
 
         return { changefreq, priority };
