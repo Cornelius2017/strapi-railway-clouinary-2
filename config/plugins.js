@@ -30,4 +30,8 @@ module.exports = ({ env }) => ({
         },
       },
     },
+    uuid: {
+
+    }
+
   });
