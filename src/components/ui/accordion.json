@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_accordion_accordions",
+  "info": {
+    "displayName": "Accordion",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Accordion_title": {
+      "type": "string"
+    },
+    "Accordion_content": {
+      "type": "richtext"
+    }
+  }
+}
