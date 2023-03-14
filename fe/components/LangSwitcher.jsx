@@ -9,9 +9,11 @@ const SITE_URL = "https://strapi-production-3c24.up.railway.app/api/";
 export default function LangSwitcher() {
     const router = useRouter();
     const { pathname, asPath, query } = router;
+    //const { locale, locales, push } = useRouter();
 
     const handleClick = l => () => {
-        router.push({ pathname, query }, asPath, { locale: l })
+        router.push({pathname, query}, asPath, { locale: l })
+        //push('/', undefined, {locale: l})
     }
 
     const [state, setState] = useState([]);

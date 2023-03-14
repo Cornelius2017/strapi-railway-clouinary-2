@@ -30,4 +30,17 @@ module.exports = ({ env }) => ({
         },
       },
     },
+
+    'custom-slug': {
+      enabled: true,
+      resolve: './src/plugins/custom-slug'
+    },
+
+    'ai-text-generation': {
+      enabled: true,
+      config: {
+        apiToken: process.env.OPEN_AI_API_TOKEN,
+      },
+    },
+    
   });

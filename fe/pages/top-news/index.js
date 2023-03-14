@@ -29,7 +29,7 @@ const TopNews = ({ top_news, lang, language }) => {
 
     const [page, setPage] = useState(1);
 
-    const pageSize = 100;
+    const pageSize = 1;
     const allPageItems = top_news.length;
     const paginationLimit = 2;
     const pageCount = Math.ceil(allPageItems / pageSize)

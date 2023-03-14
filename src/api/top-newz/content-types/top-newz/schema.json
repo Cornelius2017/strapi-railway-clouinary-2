@@ -56,12 +56,6 @@
         }
       }
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true,
-      "maxLength": 100
-    },
     "authors": {
       "type": "relation",
       "relation": "oneToMany",
@@ -90,6 +84,26 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "top_news"
+    },
+    "uid": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "disabled": true,
+      "type": "string",
+      "targetField": "title",
+      "required": true
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "visible": false,
+      "type": "string"
     }
   }
 }
