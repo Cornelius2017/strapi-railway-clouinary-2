@@ -41,6 +41,7 @@ export default {
         id: "custom-slug.slug.description",
         defaultMessage: "Custom Slug description",
       },
+      defaultValue: "custom-slug.slug.value",
       icon: PluginIcon,
       components: {
         Input: async () => import(/* webpackChunkName: "input-component" */ "./components/Input"),

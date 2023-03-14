@@ -22,9 +22,6 @@ export default function Index() {
         ref={ref}
         label="slug"
         name="slug"
-        placeholder={slug_name}
-        value="test slug"
-        disabled="true"
       >
       </TextInput>
 
