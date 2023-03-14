@@ -91,19 +91,27 @@
           "localized": false
         }
       },
-      "disabled": true,
       "type": "string",
-      "targetField": "title",
-      "required": true
+      "visible": true
     },
-    "slug": {
+    "custom_slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "customField",
+      "customField": "plugin::custom-slug.slug",
+      "visible": true
+    },
+    "uuid": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "visible": false,
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::field-uuid.uuid"
     }
   }
 }

@@ -10,7 +10,11 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "generated_content": {
       "type": "customField",
@@ -26,7 +30,7 @@
       "type": "customField",
       "customField": "plugin::custom-slug.slug"
     },
-    "slug_auto": {
+    "UUID": {
       "type": "customField",
       "customField": "plugin::field-uuid.uuid"
     }

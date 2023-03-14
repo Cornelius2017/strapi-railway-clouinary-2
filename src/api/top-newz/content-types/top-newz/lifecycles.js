@@ -6,6 +6,7 @@ module.exports = {
         const get_time = new Date().toISOString().slice(11,19).replaceAll(":", "-");
         event.params.data.uid = slugify('post-'+ get_date + "-" + get_time, {lower: true});
         event.params.data.slug = slugify('post-'+ get_date + "-" + get_time, {lower: true});
+        //event.params.data.custom_slug = slugify("test", {lower: true});
         console.log(event.params.data);
     },
     async beforeUpdate(event) {
