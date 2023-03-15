@@ -1,7 +1,5 @@
 
 import React from "react";
-import { NextPageContext } from "next";
-import { GetServerSideProps } from 'next';
 import truncateStr from "@/components/_fn/truncate";
 
 
