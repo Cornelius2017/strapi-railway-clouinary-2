@@ -113,6 +113,7 @@ const GET_ALL_TOP_NEWS_SLUGS = gql`
       data {
         attributes {
           slug
+          uuid
         }
       }
     }
@@ -125,6 +126,7 @@ const GET_ALL_NEWS_SLUGS = gql`
       data {
         attributes {
           slug
+         
         }
       }
     }
@@ -144,6 +146,7 @@ const GET_ALL_TOP_NEWS = gql`
           locale
           title
           slug
+          uuid
           date
           position
           authors {

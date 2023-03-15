@@ -1,4 +1,4 @@
-import React, { useEffect, useRef }  from 'react';
+import React, { useRef }  from 'react';
 import { TextInput } from '@strapi/design-system/TextInput';
 
 import { Button } from '@strapi/design-system/Button';
@@ -6,7 +6,7 @@ import { Button } from '@strapi/design-system/Button';
 import { Stack } from '@strapi/design-system/Stack';
 
 
-export default function Index({ name, value, onChange }) {
+export default function Index({ name, value, onChange, attribute }) {
   const dateObj = new Date();
   let year = dateObj.getFullYear();
   let month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
@@ -20,35 +20,31 @@ export default function Index({ name, value, onChange }) {
   
 
   const generateSlug = () => {
-    onChange({ target: { name, value: slug_name } })
+    onChange({ target: { name, value: slug_name, type: attribute.type } })
   };
 
   
-  // const clearGeneratedSlug = () => {
-  //   onChange({ target: { name, value: "" } })
-  // };
+  const clearGeneratedSlug = () => {
+    onChange({ target: { name, value: "", type: attribute.type } })
+  };
   
- 
   return (
     <Stack spacing={1}>
-
-      <Stack padding={4} spacing={2}>
+      <Stack spacing={1}>
       <TextInput
         label="slug_input"
         name="slug_input"
         onChange={(e) =>
           onChange({
-            target: { name, value: e.target.value },
+            target: { name, value: e.target.value, type: attribute.type },
           })
         }
         value={value ? value : generateSlug()}
         ref={ref}
-        
-        
       >
       </TextInput>
-        <Stack horizontal spacing={4}>
-          <Button onClick={() => generateSlug()}>Generate</Button>
+        <Stack horizontal spacing={1}>
+          <Button onClick={() => clearGeneratedSlug()}>Generate</Button>
           {/* <Button onClick={() => clearGeneratedSlug()}>Clear</Button> */}
         </Stack>
       </Stack>
